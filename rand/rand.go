@@ -1,6 +1,9 @@
 package rand
 
-import "math/rand"
+import (
+	"math/rand"
+	"time"
+)
 
 //1-5 каналов
 //каждые 7 минут показательно прибывают покупатели
@@ -11,9 +14,13 @@ func Test() {
 
 }
 
+//генератор случайных чисел работает только внутри тела функции
 func MakeRavnr() float64 {
-	rand.Seed(1)
-	returnFloat64 := rand.ExpFloat64() / 7
+	//задаём семя
+	generator := rand.New(rand.NewSource(time.Now().UnixNano()))
+	//генерируем значение
+	returnFloat64 := generator.ExpFloat64()
+
 	return returnFloat64
 }
 
