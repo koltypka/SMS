@@ -1,6 +1,7 @@
 package system
 
 import (
+	"github.com/koltypka/SMS/rand"
 	"github.com/koltypka/SMS/visitor"
 )
 
@@ -14,6 +15,10 @@ func StratSystem() {
 }
 
 func MakeVisitors() visitor.Visitor {
-	test := visitor.Visitor{visitor.TimeTo{1, 2}, 3}
+	test := visitor.New(
+		rand.MakeRavnr(7),
+		rand.MakeRavnr(9),
+		rand.MakeRavnr(500))
+
 	return test
 }
