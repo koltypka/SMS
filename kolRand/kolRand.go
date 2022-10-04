@@ -5,17 +5,17 @@ import (
 	"time"
 )
 
-type Random struct {
+type KolRandom struct {
 	seed *rand.Rand //генератор случайных чисел
 }
 
-func New() Random {
-	return Random{rand.New(rand.NewSource(time.Now().UnixNano()))}
+func New() KolRandom {
+	return KolRandom{rand.New(rand.NewSource(time.Now().UnixNano()))}
 }
 
 //генератор случайных чисел работает только внутри тела функции
 //генератор случайных чисел распределенных по показательному закону
-func (rnd *Random) MakeRavnr(lambda float64) uint16 {
+func (rnd *KolRandom) MakeExp(lambda float64) uint16 {
 	returnFloat64 := 1 / (rnd.seed.ExpFloat64() / lambda)
 
 	return uint16(returnFloat64)

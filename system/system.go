@@ -17,9 +17,9 @@ func StratSystem() {
 func MakeVisitors() visitor.Visitor {
 	kRnd := kolRand.New()
 	test := visitor.New(
-		kRnd.MakeRavnr(7),
-		kRnd.MakeRavnr(9),
-		kRnd.MakeRavnr(500))
+		kRnd.MakeExp(7),
+		kRnd.MakeExp(9),
+		kRnd.MakeExp(500))
 
 	return test
 }
