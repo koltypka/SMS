@@ -16,8 +16,8 @@ func New() KolRandom {
 //генератор случайных чисел работает только внутри тела функции
 //генератор случайных чисел распределенных по показательному закону
 func (rnd *KolRandom) MakeExp(lambda float64) uint16 {
-	returnFloat64 := 1 / (rnd.seed.ExpFloat64() / lambda)
+	returnUnit16 := 1 / (rnd.seed.ExpFloat64() / lambda)
 
-	return uint16(returnFloat64)
+	return uint16(returnUnit16)
 
 }
