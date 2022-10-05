@@ -1,9 +1,7 @@
 package system
 
 import (
-	"fmt"
-
-	"github.com/koltypka/SMS/rand"
+	"github.com/koltypka/SMS/kolRand"
 	"github.com/koltypka/SMS/visitor"
 )
 
@@ -16,23 +14,20 @@ func StratSystem() {
 
 }
 
-func MakeVisitors() visitor.Visitor {
+func MakeVisitors() []visitor.Visitor {
+	kRnd := kolRand.New()
 	arVisitor := []visitor.Visitor{}
-	var curVisitor visitor.Visitor //инициализация пустой структуры
 
 	var i = 0
-	for i > 3 {
+	for i < 3 {
 		curVisitor := visitor.New(
-			rand.MakeRavnr(7),
-			rand.MakeRavnr(9),
-			rand.MakeRavnr(500))
+			kRnd.MakeExp(7),
+			kRnd.MakeExp(9),
+			kRnd.MakeExp(500))
 
 		arVisitor = append(arVisitor, curVisitor)
-		fmt.Print(i)
 		i++
 	}
 
-	fmt.Println(arVisitor) //вывод цикла не получается записать
-
-	return curVisitor
+	return arVisitor
 }
