@@ -7,6 +7,6 @@ import (
 )
 
 func main() {
-	fmt.Print(system.MakeVisitors())
+	fmt.Print(system.StratSystem())
 	fmt.Print("\n")
 }
