@@ -19,5 +19,8 @@ func (rnd *KolRandom) MakeExp(lambda float64) uint16 {
 	returnUnit16 := 1 / (rnd.seed.ExpFloat64() / lambda)
 
 	return uint16(returnUnit16)
+}
 
+func (rnd *KolRandom) MakeUniform(n int32) uint16 {
+	return uint16(rnd.seed.Int31n(n))
 }
