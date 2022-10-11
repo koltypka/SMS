@@ -34,8 +34,8 @@ func checkRefuse(key, service uint16) uint16 {
 func (sysMg *SystemManager) handleQueue(nextTimeTo visitor.TimeTo) visitor.TimeTo {
 
 	if sysMg.prevTimeToService >= nextTimeTo.Visit {
-		nextTimeTo.Visit = 0
 		sysMg.prevTimeToService = sysMg.prevTimeToService - nextTimeTo.Visit
+		nextTimeTo.Visit = 0
 	} else {
 		nextTimeTo.Visit = nextTimeTo.Visit - sysMg.prevTimeToService
 		sysMg.prevTimeToService = nextTimeTo.Service
