@@ -15,11 +15,13 @@ func NewManager() Manager {
 	return Manager{kolRand.New(), 0, 0}
 }
 
-//обработчик очереди
+// обработчик очереди
+// если предыдущий посетитель ещё обрабатывается при приходе нового постетителя, то вычитаем из
+// переменной обработчика очереди через какое время пришёл посетитель, и добавлям время обслуживания новой заявки
 func (sysMg *Manager) handleQueue(nextTimeTo visitor.TimeTo) visitor.TimeTo {
 
 	if sysMg.prevTimeToService >= nextTimeTo.Visit {
-		sysMg.prevTimeToService = sysMg.prevTimeToService - nextTimeTo.Visit
+		sysMg.prevTimeToService = sysMg.prevTimeToService - nextTimeTo.Visit + nextTimeTo.Service
 		nextTimeTo.Visit = 0
 	} else {
 		nextTimeTo.Visit = nextTimeTo.Visit - sysMg.prevTimeToService
@@ -48,7 +50,7 @@ func (sysMg *Manager) MakeVisitors() []visitor.Visitor {
 	arVisitor := []visitor.Visitor{}
 	sysMg.timer = 0
 
-	for sysMg.timer < 480 {
+	for sysMg.timer+sysMg.prevTimeToService < 480 {
 		curVisitor := visitor.New(
 			sysMg.kRnd.MakeExp(7),
 			sysMg.kRnd.MakeExp(9),
@@ -56,10 +58,11 @@ func (sysMg *Manager) MakeVisitors() []visitor.Visitor {
 
 		curVisitor.TimeTo.Service = sysMg.checkRefuse(curVisitor.TimeTo.Service)
 
+		sysMg.timer += curVisitor.TimeTo.Visit
+
 		curVisitor.TimeTo = sysMg.handleQueue(curVisitor.TimeTo)
 
 		arVisitor = append(arVisitor, curVisitor)
-		sysMg.timer += curVisitor.TimeTo.Visit
 	}
 
 	return arVisitor
