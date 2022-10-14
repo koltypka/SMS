@@ -7,6 +7,6 @@ import (
 )
 
 func main() {
-	fmt.Print(system.StratSystem())
+	fmt.Print(system.StratSystem(1))
 	fmt.Print("\n")
 }
