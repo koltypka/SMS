@@ -5,6 +5,6 @@ type Visitor struct {
 	Pay    uint16 //сколько заплатил посетитель
 }
 
-func New(visit, service, pay uint16) Visitor {
+func NewVisitor(visit, service, pay uint16) Visitor {
 	return Visitor{TimeTo{visit, service}, pay}
 }

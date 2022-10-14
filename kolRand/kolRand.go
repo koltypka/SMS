@@ -10,7 +10,7 @@ type KolRandom struct {
 }
 
 func New() KolRandom {
-	return KolRandom{rand.New(rand.NewSource(time.Now().UnixNano()))}
+	return KolRandom{rand.New(rand.NewSource(time.Now().UnixMicro()))}
 }
 
 //генератор случайных чисел работает только внутри тела функции
