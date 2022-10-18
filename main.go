@@ -7,7 +7,8 @@ import (
 )
 
 func main() {
-	sys := system.NewSystem(2)
+	sys := system.NewSystem(1)
 	sys.StartSimulation()
+
 	fmt.Print("\n")
 }

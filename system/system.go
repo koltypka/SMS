@@ -1,5 +1,7 @@
 package system
 
+import "fmt"
+
 const mean_costs int32 = 2000
 
 type System struct {
@@ -44,6 +46,6 @@ func (sys *System) StartSimulation() {
 
 		sys.totalSumm(counter)
 	}
-	sys.ResultRevenue()
-	sys.ResultEffective()
+	fmt.Println(sys.ResultRevenue())
+	fmt.Println(sys.ResultEffective())
 }
