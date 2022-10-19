@@ -1,4 +1,4 @@
-package inference
+package inteface
 
 import (
 	"os"
@@ -11,18 +11,20 @@ import (
 const effective_name = "effective.html"
 const revenue_name = "revenue_name.html"
 
-type graph struct {
+//содержит все линии со значениями
+type Graph struct {
 	line     *charts.Line
-	arLines  []line
+	ArLines  []line
 	title    string
 	subtitle string
 }
 
-func NewGraph(title, subtitle string) graph {
-	return graph{charts.NewLine(), []line{}, title, subtitle}
+func NewGraph(title, subtitle string) Graph {
+	return Graph{charts.NewLine(), []line{}, title, subtitle}
 }
 
-func (g *graph) MakeGraph(arAxis []int, fileName string) {
+//на вход имена точек
+func (g *Graph) MakeGraph(arAxis []int, fileName string) {
 	// set some global options like Title/Legend/ToolTip or anything else
 	g.line.SetGlobalOptions(
 		charts.WithInitializationOpts(opts.Initialization{Theme: types.ThemeWesteros}),
@@ -31,10 +33,9 @@ func (g *graph) MakeGraph(arAxis []int, fileName string) {
 			Subtitle: g.subtitle,
 		}))
 
-	// Put data into instance
 	g.line.SetXAxis(arAxis)
 
-	for _, line := range g.arLines {
+	for _, line := range g.ArLines {
 		g.line.AddSeries(line.name, line.values)
 	}
 

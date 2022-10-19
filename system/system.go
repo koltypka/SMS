@@ -1,7 +1,5 @@
 package system
 
-import "fmt"
-
 const mean_costs int32 = 2000
 
 type System struct {
@@ -34,7 +32,7 @@ func (sys *System) ResultEffective() int32 {
 //каждые 9 минут показательно обслуживаем
 //в среднем покупатели покупают на сумму 500 рублей равномерно
 //время функционирования системы 8 часов
-func (sys *System) StartSimulation() {
+func (sys *System) StartSimulation() (int, int) {
 
 	for i := uint16(0); i < sys.numberOfCounters; i++ {
 		Manager := NewManager()
@@ -46,6 +44,6 @@ func (sys *System) StartSimulation() {
 
 		sys.totalSumm(counter)
 	}
-	fmt.Println(sys.ResultRevenue())
-	fmt.Println(sys.ResultEffective())
+
+	return int(sys.ResultRevenue()), int(sys.ResultEffective())
 }
