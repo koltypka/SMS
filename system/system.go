@@ -24,7 +24,7 @@ func (sys *System) ResultRevenue() int32 {
 }
 
 func (sys *System) ResultEffective() int32 {
-	return int32(float64(sys.totalVisitors)/float64(sys.numberOfCounters) - float64(sys.totalCosts)/float64(sys.totalRevenues))
+	return int32(float32(float32(sys.totalCosts)/float32(sys.totalRevenues+1)) * 100)
 }
 
 //1-5 каналов

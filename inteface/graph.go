@@ -9,7 +9,7 @@ import (
 )
 
 const effective_name = "effective.html"
-const revenue_name = "revenue_name.html"
+const revenue_name = "revenue.html"
 
 //содержит все линии со значениями
 type Graph struct {
@@ -27,6 +27,7 @@ func NewGraph(title, subtitle string) Graph {
 func (g *Graph) MakeGraph(arAxis []int, fileName string) {
 	// set some global options like Title/Legend/ToolTip or anything else
 	g.line.SetGlobalOptions(
+		charts.WithTooltipOpts(opts.Tooltip{Show: true}),
 		charts.WithInitializationOpts(opts.Initialization{Theme: types.ThemeWesteros}),
 		charts.WithTitleOpts(opts.Title{
 			Title:    g.title,
