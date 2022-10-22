@@ -1,8 +1,8 @@
 package system
 
 import (
-	"github.com/koltypka/SMS/kolRand"
 	"github.com/koltypka/SMS/visitor"
+	"github.com/koltypka/kolRand"
 )
 
 const visit_time_mean float64 = 7
