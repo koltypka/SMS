@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	inteface.StartRuns(5, 100000)
+	inteface.StartRuns(5, 10)
 }
